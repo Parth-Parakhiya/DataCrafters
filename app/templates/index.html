@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataCrafters Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <img src="https://via.placeholder.com/100x100.png?text=Logo" alt="DataCrafters Logo" class="logo">
+        DataCrafters Dashboard
+    </header>
+    <nav>
+        <a href="/visualizer">Visualizer</a>
+        <a href="/setup_database">Setup Database</a>
+        <a href="#">About Us</a>
+    </nav>
+    <main>
+        <h1>Welcome to the DataCrafters Dashboard</h1>
+        <p>Analyze and visualize automotive cyber-attack data with cutting-edge algorithms and interactive dashboards.</p>
+        <button onclick="location.href='/visualizer'">Launch Visualizer</button>
+        <button onclick="location.href='/setup_database'">Setup Database</button>
+    </main>
+    <footer>
+        &copy; 2024 DataCrafters. All Rights Reserved.
+    </footer>
+</body>
+</html>
