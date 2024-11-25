@@ -6,8 +6,9 @@ class DatabaseManager:
         self.conn = pymysql.connect(
             host='localhost',
             user='root',
-            password='123@Parth@321',
-            database='car_security'
+            password='',
+            database='car_security',
+            port=3306
         )
 
     def query_data(self, table_name):

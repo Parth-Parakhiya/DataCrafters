@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DataCrafters Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
     <header>
-        <img src="https://via.placeholder.com/100x100.png?text=Logo" alt="DataCrafters Logo" class="logo">
-        DataCrafters Dashboard
+        <img src="static/logo.jpg" alt="DataCrafters Logo" class="logo">
+        <h1>DataCrafters Dashboard</h1>
     </header>
     <nav>
-        <a href="/visualizer">Visualizer</a>
-        <a href="/setup_database">Setup Database</a>
-        <a href="#">About Us</a>
+        <a href="/run_visualizer">Visualizer</a>
+        <a href="/risk_mitigation">Risk Mitigation</a>
+        <a href="/about_us">About Us</a>
     </nav>
     <main>
-        <h1>Welcome to the DataCrafters Dashboard</h1>
-        <p>Analyze and visualize automotive cyber-attack data with cutting-edge algorithms and interactive dashboards.</p>
-        <button onclick="location.href='/visualizer'">Launch Visualizer</button>
-        <button onclick="location.href='/setup_database'">Setup Database</button>
+        <h2>Welcome to the DataCrafters Dashboard</h2>
+        <p>Analyze and visualize data with cutting-edge algorithms and interactive dashboards.</p>
+        <button onclick="location.href='/run_visualizer'">Launch Visualizer</button>
+        <button onclick="location.href='/risk_mitigation'">Risk Mitigation</button>
     </main>
     <footer>
         &copy; 2024 DataCrafters. All Rights Reserved.

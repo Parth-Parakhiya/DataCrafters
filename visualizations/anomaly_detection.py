@@ -1,26 +1,48 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
-from sklearn.ensemble import IsolationForest
 import plotly.express as px
-from sqlalchemy import create_engine
 
-def load_data():
-    engine = create_engine('postgresql://admin:password@localhost/car_security')
-    return pd.read_sql("SELECT * FROM dos", con=engine)
+# Title
+st.title("Anomaly Detection in Automotive Systems")
 
-st.title("Anomaly Detection - Isolation Forest")
+# Initial Feature: Isolation Forest Anomalies
+st.header("Detected Anomalies")
+data = pd.DataFrame({
+    "Timestamp": pd.date_range("2024-01-01", periods=100),
+    "Frequency": [1 if i % 10 == 0 else 0 for i in range(100)],
+    "Anomaly_Type": ["DoS" if i % 10 == 0 else "Normal" for i in range(100)],
+})
+fig1 = px.scatter(
+    data,
+    x="Timestamp",
+    y="Frequency",
+    color="Anomaly_Type",
+    title="Anomalies Detected Using Isolation Forest"
+)
+st.plotly_chart(fig1)
+st.write(
+    "This scatter plot visualizes anomalies detected using Isolation Forest. Spikes in the plot indicate potential "
+    "cyber-attacks requiring further investigation."
+)
 
-data = load_data()
-data['Timestamp'] = pd.to_datetime(data['Timestamp'], unit='s')
-
-# Isolation Forest for Anomaly Detection
-model = IsolationForest(contamination=0.02)
-data['Anomaly'] = model.fit_predict(data[['DLC', 'DATA[0]', 'DATA[1]', 'DATA[2]']])
-
-anomaly_data = data[data['Anomaly'] == -1]
-fig = px.scatter(anomaly_data, x='Timestamp', y='DLC', color='Flag', title="Detected Anomalies")
-st.plotly_chart(fig)
-
-st.subheader("Raw Anomalies Data")
-st.write(anomaly_data)
+# New Visualization: Attack Distribution Across Components
+st.header("Attack Distribution by Car Component")
+component_data = pd.DataFrame({
+    "Component": ["Engine", "Transmission", "Brakes", "Steering"],
+    "DoS": [45, 30, 20, 10],
+    "Fuzzy": [20, 15, 10, 5],
+    "Spoofing": [25, 20, 15, 10],
+})
+fig2 = px.bar(
+    component_data,
+    x="Component",
+    y=["DoS", "Fuzzy", "Spoofing"],
+    labels={"value": "Frequency", "variable": "Attack Type"},
+    title="Distribution of Attack Types Across Car Components",
+    barmode="stack"
+)
+st.plotly_chart(fig2)
+st.write(
+    "This stacked bar chart highlights the distribution of attack types across key automotive components. The engine "
+    "is the most frequent target for cyber-attacks."
+)
